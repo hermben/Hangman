@@ -8,11 +8,11 @@ namespace Hangman
         {
             Console.WriteLine("Wlecome to Hangman");
             string[] listwords = new string[3];
-            listwords[0] = "beautiful";
+            listwords[0] = "car";
             listwords[1] = "happy";
             listwords[2] = "boy";
 
-
+            var numTurns = 3;
             var won = false;
             Random wordRand = new Random();
             var exo = wordRand.Next(0, 3);
@@ -24,19 +24,27 @@ namespace Hangman
             for (int s = 0; s < wordToGuess.Length; s++)
                 guess[s] = '-';
 
-            while (won == false )
+            while (won == false && numTurns != 0 )
             {
                 Console.WriteLine("please enter a letter: ");
 
                 char guessChar =Convert.ToChar( Console.ReadLine());
-
+                var isCharfound = false; 
+                // Search and Replace - with character found 
                 for (int i =0; i< wordToGuess.Length; i++)
                 {
+                    // The entered char is found on wordToGuess
                     if (guessChar == wordToGuess[i])
                     {
                         guess[i] = guessChar;
+                        isCharfound = true;
                     }
+                }
+                if (isCharfound == false)
 
+                {
+                    numTurns--;
+                    Console.WriteLine("Wrong character you have :" + numTurns );
                 }
                 Console.WriteLine(guess);
                 // verifies if user won
