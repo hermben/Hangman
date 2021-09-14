@@ -6,17 +6,12 @@ namespace Hangman
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Wlecome to Hangman");
-            string[] listwords = new string[3];
-            listwords[0] = "car";
-            listwords[1] = "happy";
-            listwords[2] = "boy";
-
+            Console.WriteLine("Welcome to Hangman");
+            
             var numTurns = 3;
             var won = false;
-            Random wordRand = new Random();
-            var exo = wordRand.Next(0, 3);
-            string wordToGuess = listwords[exo];
+            WordList wordList = new WordList();
+            string wordToGuess = wordList.randomWord();
             char[] guess = new char[wordToGuess.Length];
 
             for (int s = 0; s < wordToGuess.Length; s++)
