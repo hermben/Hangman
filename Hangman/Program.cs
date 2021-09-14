@@ -26,7 +26,7 @@ namespace Hangman
                 // Search and Replace - with character found 
                 for (int i =0; i< wordToGuess.Length; i++)
                 {
-                    // The entered char is found on wordToGuess
+                    //  entered char is found on wordToGuess
                     if (guessChar == wordToGuess[i])
                     {
                         guess[i] = guessChar;
