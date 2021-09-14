@@ -19,14 +19,14 @@ namespace Hangman
             string wordToGuess = listwords[exo];
             char[] guess = new char[wordToGuess.Length];
 
-            Console.Write("Please enter your guess");
-
             for (int s = 0; s < wordToGuess.Length; s++)
                 guess[s] = '-';
 
             while (won == false && numTurns != 0 )
             {
+                Console.WriteLine(guess);
                 Console.WriteLine("please enter a letter: ");
+
 
                 char guessChar =Convert.ToChar( Console.ReadLine());
                 var isCharfound = false; 
@@ -40,13 +40,14 @@ namespace Hangman
                         isCharfound = true;
                     }
                 }
+
                 if (isCharfound == false)
 
                 {
                     numTurns--;
                     Console.WriteLine("Wrong character you have :" + numTurns );
                 }
-                Console.WriteLine(guess);
+                
                 // verifies if user won
                 won = true;
                 for (int j = 0;j<guess.Length; j++)
@@ -59,9 +60,13 @@ namespace Hangman
                 }
 
             }
-
-            Console.WriteLine("you have won");
-
+            if (won == true)
+            {
+                Console.WriteLine("you have won");
+            }else
+            {
+                Console.WriteLine("you have lost");
+            }
         }
     }
 }
