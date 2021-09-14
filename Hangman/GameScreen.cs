@@ -34,7 +34,7 @@ namespace Hangman
 
         public void displayTurnsLeft(int numTurns)
         {
-            Console.WriteLine("Wrong character you have :" + numTurns);
+            Console.WriteLine("Wrong character you have :" + numTurns + " turns left");
         }
     }
 }
