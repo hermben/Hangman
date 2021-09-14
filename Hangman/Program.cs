@@ -6,24 +6,22 @@ namespace Hangman
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Hangman");
             
             var numTurns = 3;
             var won = false;
             WordList wordList = new WordList();
             string wordToGuess = wordList.randomWord();
-            char[] guess = new char[wordToGuess.Length];
+            char[] guess = wordList.stringToCharArray(wordToGuess);
+            GameScreen screen = new GameScreen();
+            
 
-            for (int s = 0; s < wordToGuess.Length; s++)
-                guess[s] = '-';
+            screen.displayWelcomeMessage();
+
 
             while (won == false && numTurns != 0 )
             {
-                Console.WriteLine(guess);
-                Console.WriteLine("please enter a letter: ");
+                char guessChar =  screen.getUserChar(guess);
 
-
-                char guessChar =Convert.ToChar( Console.ReadLine());
                 var isCharfound = false; 
                 // Search and Replace - with character found 
                 for (int i =0; i< wordToGuess.Length; i++)
@@ -37,10 +35,9 @@ namespace Hangman
                 }
 
                 if (isCharfound == false)
-
                 {
                     numTurns--;
-                    Console.WriteLine("Wrong character you have :" + numTurns );
+                    screen.displayTurnsLeft(numTurns);
                 }
                 
                 // verifies if user won
@@ -55,13 +52,8 @@ namespace Hangman
                 }
 
             }
-            if (won == true)
-            {
-                Console.WriteLine("you have won");
-            }else
-            {
-                Console.WriteLine("you have lost");
-            }
+
+            screen.displayResult(won);
         }
     }
 }

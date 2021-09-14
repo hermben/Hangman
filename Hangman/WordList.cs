@@ -22,6 +22,16 @@ namespace Hangman
             return wordToGuess;
 
         }
+
+        public char[] stringToCharArray(string word)
+        {
+            char[] guess = new char[word.Length];
+
+            for (int s = 0; s < word.Length; s++)
+                guess[s] = '-';
+
+            return guess;
+        }
        
      }
 
