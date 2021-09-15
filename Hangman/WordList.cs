@@ -32,7 +32,21 @@ namespace Hangman
 
             return guess;
         }
-       
-     }
+
+        public char[] searchReplaceChar(char[] guess, char guessChar, string wordToGuess)
+        {
+            for (int i = 0; i < wordToGuess.Length; i++)
+            {
+                //  entered char is found on wordToGuess
+                if (guessChar == wordToGuess[i])
+                {
+                    guess[i] = guessChar;
+                }
+            }
+
+            return guess;
+        }
+
+    }
 
 }

@@ -13,10 +13,10 @@ namespace Hangman
         string wordToGuess;
         char[] guess;
         GameScreen screen = new GameScreen();
+        WordList wordList = new WordList();
 
         public void init()
         {
-            WordList wordList = new WordList();
             numTurns = 3;
             won = false;
             wordToGuess = wordList.randomWord();
@@ -25,48 +25,43 @@ namespace Hangman
 
         public void start()
         {
-            init();
-
-
+            this.init();
             screen.displayWelcomeMessage();
-
 
             while (won == false && numTurns != 0)
             {
+                // Get a char from user input
                 char guessChar = screen.getUserChar(guess);
 
-                var isCharfound = false;
-                // Search and Replace - with character found 
-                for (int i = 0; i < wordToGuess.Length; i++)
+                // WordToguess contains user entered char
+                if (wordToGuess.Contains(guessChar))
                 {
-                    //  entered char is found on wordToGuess
-                    if (guessChar == wordToGuess[i])
-                    {
-                        guess[i] = guessChar;
-                        isCharfound = true;
-                    }
-                }
-
-                if (isCharfound == false)
+                    guess = wordList.searchReplaceChar(guess, guessChar, wordToGuess);
+                } else
                 {
                     numTurns--;
                     screen.displayTurnsLeft(numTurns);
                 }
 
-                // verifies if user won
-                won = true;
-                for (int j = 0; j < guess.Length; j++)
-                {
-                    if (guess[j] == '-')
-                    {
-                        won = false;
-                    }
-
-                }
-
+                //// verifies if user won
+                won = this.hasPlayerWon();
             }
 
             screen.displayResult(won);
+        }
+
+        public bool hasPlayerWon()
+        {
+            // verifies if user won
+            for (int j = 0; j < this.guess.Length; j++)
+            {
+                if (this.guess[j] == '-')
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
     }

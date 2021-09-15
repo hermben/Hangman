@@ -15,6 +15,7 @@ namespace Hangman
 
         public char getUserChar(char[] guess)
         {
+            Console.WriteLine();
             Console.WriteLine(guess);
             Console.WriteLine("please enter a letter: ");
             return Convert.ToChar(Console.ReadLine());
@@ -34,6 +35,7 @@ namespace Hangman
 
         public void displayTurnsLeft(int numTurns)
         {
+            Console.WriteLine();
             Console.WriteLine("Wrong character you have :" + numTurns + " turns left");
         }
     }
